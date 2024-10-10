@@ -1,8 +1,5 @@
 package com.ana.dalmolin.gestao_vagas.provides;
 
-import java.time.Duration;
-import java.time.Instant;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -18,9 +15,10 @@ public class JWTProvider {
 
 
     public String validateToken(String token){
-        token = token.replace("Bearer ", "");
+        // token = token.replace("Bearer ", "");
+        
         Algorithm algorithm = Algorithm.HMAC256(secreteKey);
-       
+
         try {
             var subject = JWT.require(algorithm)
             .build()
@@ -29,6 +27,7 @@ public class JWTProvider {
             return subject;
         } catch (JWTVerificationException e) {
             e.printStackTrace();
+            System.out.println(e.getMessage());
             return "";
         }
     }
