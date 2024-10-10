@@ -13,6 +13,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Entity(name = "job")
@@ -27,6 +28,7 @@ public class JobEntity {
 
     private String benefits;
 
+    @NotBlank(message = "O campo 'level' é obrigatório")
     private String level;
 
     @ManyToOne()
@@ -40,3 +42,4 @@ public class JobEntity {
     private LocalDateTime createAt;
 
 }
+
